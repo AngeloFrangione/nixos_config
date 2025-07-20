@@ -8,12 +8,14 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./nvidia.nix
       ./steam.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
 
 
 
@@ -93,6 +95,12 @@
     packages = with pkgs; [
       zed-editor
       kdePackages.kate
+      alacritty
+      telegram-desktop
+      darktable
+      fira-code-symbols
+      gimp3-with-plugins
+      onlyoffice-desktopeditors
     ];
   };
 
@@ -112,9 +120,15 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+	 killall
      git
      wget
+     bluez
+     blueman
      cron
+     htop
+     pkgs.unixtools.quota
+     wireguard-tools
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -129,7 +143,7 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
+  services.blueman.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

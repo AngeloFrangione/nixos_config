@@ -12,10 +12,16 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  
-  #boot.kernelParams = [
-  #  "nvidia-drm.fbdev=1"
-  #];
+
+  hardware = {
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
+    bluetooth.input = {
+      General = {
+        ClassicBondedOnly = false;
+      };
+    };
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/59807e3f-ed4d-46bd-94b8-c66242b9ed30";
@@ -39,7 +45,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  
   hardware.graphics = {
     enable = true;
   };
@@ -47,10 +52,10 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-  modesetting.enable = true;
-  powerManagement.enable = false;
-  open = true;
-  nvidiaSettings = true;
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    open = false;
+    nvidiaSettings = true;
   };
 
 
