@@ -8,8 +8,10 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./nvidia.nix
-      ./steam.nix
+      ./qb-root-ca.nix
+      ./sway.nix
+      #./nvidia.nix
+      #./steam.nix
     ];
 
   # Bootloader.
@@ -19,7 +21,7 @@
 
 
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "afrangione-laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -87,22 +89,31 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.angelo = {
+  users.users.afrangione = {
     isNormalUser = true;
     description = "Angelo";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "wireshark" "docker" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       zed-editor
+      element-desktop
+      thunderbird
+      mattermost-desktop
+      gparted
       kdePackages.kate
       alacritty
-      telegram-desktop
-      darktable
-      fira-code-symbols
-      gimp3-with-plugins
-      onlyoffice-desktopeditors
+      # telegram-desktop
+      # darktable
+      # gimp3-with-plugins
+      # onlyoffice-desktopeditors
     ];
   };
+
+  fonts.packages = with pkgs; [
+    font-awesome
+    fira-code
+    fira-code-symbols
+  ];
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -120,15 +131,19 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-	 killall
+	   killall
      git
      wget
+     kdePackages.partitionmanager
      bluez
      blueman
      cron
      htop
      pkgs.unixtools.quota
+     nssTools
+     keepassxc
      wireguard-tools
+     fastfetch
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -157,5 +172,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

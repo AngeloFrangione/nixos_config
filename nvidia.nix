@@ -1,6 +1,19 @@
 { config, pkgs, lib, ... }:
 
 {
+  hardware.graphics = {
+    enable = true;
+  };
+
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    open = false;
+    nvidiaSettings = true;
+  };
+
   systemd.services.nvidiaLockClocks = {
       description = "Set NVIDIA GPU clocks and mode";
       after = [ "multi-user.target" ];
