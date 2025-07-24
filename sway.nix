@@ -4,6 +4,7 @@
     waybar
     rofi
     rofi-calc
+    wev
     swaylock-effects
     swayidle
     waylogout
@@ -12,7 +13,8 @@
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
+    swaynotificationcenter # notification system developed by swaywm maintainer
+    libnotify
   ];
 
   # Enable the gnome-keyring secrets vault.
