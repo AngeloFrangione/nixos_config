@@ -8,25 +8,16 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./qb-root-ca.nix
+      # ./qb-root-ca.nix
       ./sway.nix
-      #./nvidia.nix
-      #./steam.nix
+      ./nvidia.nix
+      ./steam.nix
+      devices/thinkcentre.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-
-
-
-  networking.hostName = "afrangione-laptop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -91,30 +82,7 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.afrangione = {
-    isNormalUser = true;
-    description = "Angelo";
-    extraGroups = [ "networkmanager" "wheel" "video" "wireshark" "docker" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      zed-editor
-      element-desktop
-      thunderbird
-      mattermost-desktop
-      gparted
-      kdePackages.kate
-      alacritty
-      bruno
-      obsidian
-      home-manager
-      pavucontrol
-      # telegram-desktop
-      # darktable
-      # gimp3-with-plugins
-      # onlyoffice-desktopeditors
-    ];
-  };
+
 
   fonts.packages = with pkgs; [
     font-awesome
@@ -142,6 +110,7 @@
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      killall
      git
+     hfsprogs
      ripgrep
      wget
      kdePackages.partitionmanager
@@ -154,6 +123,9 @@
      keepassxc
      wireguard-tools
      fastfetch
+     alacritty
+     kdePackages.kate
+     gparted
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
