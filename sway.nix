@@ -15,6 +15,7 @@
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     swaynotificationcenter # notification system developed by swaywm maintainer
     libnotify
+    wl-gammarelay-rs
   ];
 
   # Enable the gnome-keyring secrets vault.
@@ -25,5 +26,8 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    extraOptions = [
+      "--unsupported-gpu"
+    ];
   };
 }
