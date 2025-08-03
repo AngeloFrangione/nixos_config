@@ -8,6 +8,8 @@
     swaylock-effects
     swayidle
     waylogout
+    wl-gammarelay-rs
+    lxde.lxsession
     brillo
     sway-contrib.grimshot
     grim # screenshot functionality
