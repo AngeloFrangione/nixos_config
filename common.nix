@@ -2,18 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
-{
-  imports =
-    [
-      ./hardware-configuration.nix
-      # ./qb-root-ca.nix
-      ./sway.nix
-      ./nvidia.nix
-      ./steam.nix
-      devices/thinkcentre.nix
-    ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -70,7 +58,7 @@
   #  pulse.enable = true;
   #  # If you want to use JACK applications, uncomment this
   #  jack.enable = true;
- 
+
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
@@ -111,6 +99,7 @@
      appimage-run
      killall
      git
+     dig
      hfsprogs
      ripgrep
      wget

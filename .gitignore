@@ -1,2 +1,3 @@
 hardware-configuration.nix
 qb-root-ca.nix
+configuration.nix
